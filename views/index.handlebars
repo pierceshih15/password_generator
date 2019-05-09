@@ -1,0 +1,112 @@
+<!--  ./views/index.handlebars -->
+<div class="container py-5">
+
+  <div class="row">
+    <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+      <!-- 卡片內容 -->
+      <div class="card">
+        <div class="card-body">
+          <!-- 卡片標題 -->
+          <h5 class="card-title">Random Password Generator <i class="fas fa-key"></i></h5>
+          <hr>
+
+          <!-- 表單內容 -->
+          <form method="POST" action="/">
+            <!-- 表單第一格，密碼長度，input 形式-->
+            <div class="form-group form-row">
+              <!-- 密碼左側 文字內容 -->
+              <label for="length" class="col-md-4 col-form-label">
+                Password Length
+              </label>
+              <!-- 密碼右側 設定區域 -->
+              <div class="col-md-8">
+                <!-- 使用者輸入 -->
+                <input type="number" name="length" class="form-control" id="length" min="4" max="16"
+                  value="{{options.length}}">
+                <!-- 提示訊息 -->
+                <small class=" text-muted form-text">Length is available between 4 ~ 16</small>
+              </div>
+            </div>
+
+
+            <!-- 表單第二格，密碼是否包含英文小寫，Checkbox 形式 -->
+            <div class="form-group form-row mb-2 align-item-center">
+              <!-- 左側 文字內容 -->
+              <label for="lowercase" class="col-md-4 col-form-label">Include Lowercase Characters</label>
+              <!-- 右側 設定區域 -->
+              <div class="col-md-8">
+                <div class="custom-control custom-checkbox">
+                  <!-- 使用者選取 -->
+                  <input type="checkbox" name="lowercase" class="custom-control-input" id="lowercase"
+                    {{#if options.lowercase}}checked{{/if}}>
+                  <!-- 提示訊息 -->
+                  <label class="custom-control-label" for="lowercase">(e.g. abcdefg)</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- 表單第三格，密碼是否包含英文大寫，Checkbox 形式 -->
+            <div class="form-group form-row mb-2 align-items-center">
+              <label for="uppercase" class="col-md-4 col-form-label">Include Uppercase Characters</label>
+              <div class="col-md-8">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="uppercase" name="uppercase"
+                    {{#if options.uppercase}}checked{{/if}}>
+                  <label class="custom-control-label" for="uppercase">(e.g. ABCDEFG)</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- 表單第四格，密碼是否包含數字，Checkbox 形式 -->
+            <div class="form-group form-row mb-2 align-items-center">
+              <label for="numbers" class="col-md-4 col-form-label">Include Numbers</label>
+              <div class="col-md-8">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="numbers" name="numbers"
+                    {{#if options.numbers}}checked{{/if}}>
+                  <label class="custom-control-label" for="numbers">(e.g. 123456)</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- 表單第五格，密碼是否包含符號，Checkbox 形式 -->
+            <div class="form-group form-row mb-2 align-items-center">
+              <label for="symbols" class="col-md-4 col-form-label">Include Symbols</label>
+              <div class="col-md-8">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="symbols" name="symbols"
+                    {{#if options.symbols}}checked{{/if}}>
+                  <label class="custom-control-label" for="symbols">(e.g. @#$%)</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- 表單第六格，不包含的字元，input 形式 -->
+            <div class="form-group form-row">
+              <label for="exclude-characters" class="col-md-4 col-form-label">
+                Exclude Characters
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="excludeCharacters" class="form-control" id="exclude-characters"
+                  value="{{options.excludeCharacters}}">
+                <small class="text-muted form-text">These characters will not appear in the password</small>
+              </div>
+            </div>
+
+            {{#if password}}
+            <div class="alert alert-info" role="alert">
+              <span class="mr-2">Your password is:</span> <code>{{password}}</code>
+            </div>
+            {{/if}}
+
+            <button class="btn btn-success" type="submit">Generate Password</button>
+          </form>
+        </div>
+
+        <small class="card-footer text-muted text-right">
+          Idea is inspired by <a href="https://passwordsgenerator.net/" target="_blank">Strong Random Password</a>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
